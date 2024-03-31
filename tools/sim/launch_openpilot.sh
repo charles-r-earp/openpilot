@@ -7,10 +7,8 @@ export SKIP_FW_QUERY="1"
 export FINGERPRINT="HONDA_CIVIC"
 
 export BLOCK="${BLOCK},camerad,loggerd,encoderd,micd,logmessaged"
-if [[ "$CI" ]]; then
-  # TODO: offscreen UI should work
-  export BLOCK="${BLOCK},ui"
-fi
+
+python -c "import onnxruntime as ort; print(ort.get_available_providers())"
 
 python -c "from openpilot.selfdrive.test.helpers import set_params_enabled; set_params_enabled()"
 
